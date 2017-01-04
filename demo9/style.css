@@ -1,0 +1,85 @@
+.div0{
+	width: 100px;
+	height: 100px;
+	background-color: #ff00aa;
+}
+
+.div1{
+	width: 100px;
+	height: 100px;
+	background-color: #aabbcc;
+	-webkit-transition:width 2s,height 2s,transform 2s;
+	transition:width 4s,height 2s,transform 8s;
+	-webkit-transition-delay: 1s;
+	transition-delay:1s;
+}
+
+.div1:hover{
+width: 200px;
+height: 200px;
+transform:rotate(180deg);
+-webkit-transform:rotate(180deg);
+}
+
+.div2{
+	width: 100px;
+	height: 100px;
+	background-color: #ff00aa;
+}
+
+/*.div2{
+	transform:translate(200px,100px);
+	-webkit-transform:translate(200px,100px);
+	-ms-transform:translate(200px,100px);
+	-moz-transform:translate(200px,100px);
+	-o-transform:translate(200px,100px);
+}*/
+
+/*.div2{
+	transform:rotate(90deg);
+	-webkit-transform:translate(90deg);
+}*/
+/*
+.div2{
+	transform:scale(2,0.5);
+	-webkit-transform:scale(2,0.5);
+}*/
+
+.div2{
+	transform:skew(50deg,10deg);
+	-webkit-transform:skew(10deg,10deg);
+}
+
+/*.div2{*/
+	/*transform:rotateY(300deg);*/
+	/*-webkit-transform:roteteY(200deg);*/
+/*}*/
+
+
+.div3{
+	width: 100px;
+	height: 100px;
+	color: #ffffff;
+	position: relative;
+	animation: anim 10s infinite alternate;
+	-webkit-animation: anim 5s infinite alternate;
+}
+
+
+@-webkit-keyframes anim {
+	0%{background: #0e0e0e;left: 0;  top:0px;}
+	25%{background: #1e0e0e;  left: 200px; top: 0px;}
+	50%{background: #2e0e0e;  left: 200px; top: 200px;}
+	75%{background: #3e0e0e;  left: 0px; top: 200px;}
+	100%{background: #4e0e0e;  left: 0; top: 0px;}
+}
+
+
+.div4{
+	column-count: 4;
+	-webkit-column-count: 4;
+	column-gap: 20px;
+	-webkit-column-gap:20px ;
+	column-rule: 5px outset #ffff00;
+	-webkit-column-rule: 5px outset #ffff00;
+}
