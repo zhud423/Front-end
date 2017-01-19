@@ -1,0 +1,19 @@
+var Car = {
+        initWithColor: function( color ){
+
+            var self = {};
+            self.color = color;
+            return self;
+        }
+    };
+
+    var Ford = {
+        initWithColor: function( color ){
+
+            var self = Car.initWithColor( color );
+            self.lightColor = color;
+            return self;
+        }
+    };
+
+    var aFord = Ford.initWithColor( 'orange' );
