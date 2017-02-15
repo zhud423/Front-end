@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function person(){              //创建了类,并非创建对象
+
+    }
+    person.prototype.say=function(){
+        alert("hello")
+    };
+    function student(){
+
+    }
+    //var m=student.prototype=new person(); 学生继承人的原型类
+    student.prototype=new person(); //不用var,也可以直接定义
+    student.prototype.say=function(){   //子级复定义属性
+        alert("s-hello");
+    }
+//    m.say();     此处执行不了,后边语句也不能执行,不会弹出s-hello
+    var n=new student();
+    n.say();
+</script>
+</body>
+</html>

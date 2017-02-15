@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="btn"></p>
+<script>
+    var person={
+         name:"q",
+         age:1,
+         eat:function(){
+         alert("b")
+         }
+    };
+     person.height=100;
+     //alert(person.age);
+     //var c=eat();写法不对,应该为var c=eat(){};
+     person.eat();//eat属性本身是个函数,只有调用后才能生效
+
+
+    //函数构造器
+    function a(){
+
+    }
+    a.prototype={          //初始化
+        name:"q",
+        age:1,
+        eat:function(){
+            alert("big")
+        }
+//        eat();不能在此处调用,因为eat虽然是个函数,但它仅为父级构造器中的一个元素,不能执行
+    };
+//    a.eat();不能在此处调用,因为对象还没创建
+    var w=new a();//函数构造器法必须通过new来创建对象a
+   // var w=a();函数构造器不能用此法创建对象
+    alert(w.name);
+//    w.eat();
+    alert(w.age);
+
+
+    var d=document.getElementById('btn').innerHTML="aaaa";
+    d.innerHTML="ssss";//第二种写法
+</script>
+</body>
+</html>

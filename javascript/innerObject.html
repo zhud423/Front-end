@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //两种简单创建方法
+    people=new Object();//最大的对象,是一切对象的父类
+    people.name="zhu";
+    people.age=1;
+
+    people={name:"zhu",age:1};
+    alert(people.name);
+
+    //常规创建法
+    function people1(name,age){
+        this._name=name;//参数name的值再传给this._name
+        this._age=age;
+        alert(this._name);
+    }
+    p=new people1("zhu",1);//值传递给参数name,age
+//    alert(p._name+p._age);//另一种输出方式
+//    p.name();       无需调用,因为name不是function函数
+
+    //string对象
+    var str="hello world";
+    var str1="hello,world,zhu";
+    alert("str length:"+str.length);//length属性
+    alert(str.indexOf("world"));//查询字符串是否存在,存在输出其在父字符串中的位置(从0开始),否则输出-1
+    alert(str.match("hello"));//匹配字符串,存在输出该字符串,不存在输出null
+    alert(str.replace("world","zhu"));
+    alert(str.toUpperCase());
+    var s=str1.split(",");//把多个字符分成数组
+    alert(s[0]);
+
+    //date对象
+    var time=new Date();//注意Date首字母大写
+    alert(time);
+    alert(time.getFullYear());
+    alert(time.getTime());//1970.01.01到现在的ms数
+    time.setDate(15);
+    alert(time.getDate());
+</script>
+</body>
+</html>

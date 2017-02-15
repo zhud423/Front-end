@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="startTime()">
+<script>
+    function startTime(){
+        var time=new Date();
+        var h=time.getHours();
+        var m=time.getMinutes();
+        var s=time.getSeconds();
+        var mc=checkTime(m);
+        var sc=checkTime(s);
+        document.getElementById("t").innerHTML=h+":"+mc+":"+sc;
+        t=setTimeout(function(){  //setTimeout在指定的毫秒数后调用函数或计算表达式
+            startTime(); //递归调用,函数自己调用自己
+        },500);          //实现让时间一直刷新
+    }
+    function checkTime(i){
+        if(i<10){
+            i="0"+i;
+        }
+        return i;
+    }
+</script>
+</body>
+    <div id="t"></div>
+</html>

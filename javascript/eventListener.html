@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--<div>hello</div>      用div无语义-->
+    <p id="p">hello</p>
+    <!--<button onclick="change()">btn</button> -->
+    <button id="btn">btn</button>
+    <script>
+        //不使用句柄
+//        function change(){
+//            document.getElementById("p").innerHTML="hi";
+//        }
+
+
+        //使用句柄修改文档时,只需进行dom操作,无html操作,且句柄不覆盖,依次执行
+        document.getElementById("btn").addEventListener("click",hi);
+        document.getElementById("btn").addEventListener("click",hey);
+        function hi(){
+            document.getElementById("p").innerHTML="hi";
+        }
+        function hey(){
+//            document.getElementById("p").innerHTML="hey";  2个innerHTML操作会覆盖,并非句柄覆盖,改为不同操作后会同时输出
+            alert("hey");
+        }
+        document.getElementById("btn").removeEventListener("click",hi);
+
+        //简化代码
+        var g=document.getElementById("btn");
+        g.addEventListener("click",hi)
+    </script>
+</body>
+</html>

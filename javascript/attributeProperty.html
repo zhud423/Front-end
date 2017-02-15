@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div{
+            width:1000px;
+            height:500px ;
+            background: #111;
+        }
+
+    </style>
+</head>
+<body>
+    <a id="a" href="http://www.baidu.com">link</a>
+    <button id="btn" onclick="change()">btn</button>
+    <img id="img" src="1.jpg" alt="">
+    <div id="div"></div>
+<script>
+    document.getElementById("a").href="http://www.jd.com";   //http://不能忘了,否则就404了
+    function change(){
+        document.getElementById("img").src="2.jpg";                //attribute
+        document.getElementById("div").style.background="#879 url(1.jpg) repeat-x";     //property
+    }
+
+
+</script>
+</body>
+</html>

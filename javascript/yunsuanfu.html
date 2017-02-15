@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+
+	</style>
+	<link rel="stylesheet" type="text/css" href="">
+</head>
+<body>
+	<!--<p>i=10,j=1,i+j=</p>-->
+    <!--<p id="out"></p>-->
+	<!--<button onclick="sum()">out</button>-->
+</body>
+<script type="text/javascript">
+	function sum() {
+		var i = 10;
+		var j = 2;
+		var m = i%j;
+		document.getElementById("out").innerHTML = m;
+		//bool
+		document.write(i==j);
+		document.write(i===j);//类型也要相同,数字和字符串
+		document.write(i!=j);
+		document.write(i!==j);//同上
+		document.write(i!=j&&i<8);
+		document.write(i!=j||i<8);
+		document.write(!(i>=j));//取反
+		document.write(i>10?"i大于10":"小于10");//逻辑
+	}
+	var a=1;
+	var b=2;
+	var c=a+b;
+	console.log(c);//控制台调试法,在控制台打印输出
+</script>
+</html>

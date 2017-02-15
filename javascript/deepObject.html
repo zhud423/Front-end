@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function person(name){
+        var _this={  };//创建空的对象,用来承载属性等信息,注意this前的_
+        _this._name=name;//
+        _this.say=function(){
+        alert("hello"+_this._name);
+        };
+        return _this;//必须返回
+    }
+    function man(name){
+        var _this=person(name);//此时this包含person的全部属性,实现继承
+//        _this._name=name;     上面已经传入name,此处无需传参
+        var s=_this.say();//超级调用前奏
+        _this.say=function(){     //复写父类的属性
+            alert("m-hello"+_this._name);
+            s.call(_this);//超级调用,可以让父级_this也生效
+        };
+        return _this;
+    }
+    var m=new man("zhu");//new定义法,实例化
+//    var m=man();    直接定义法
+    m.say();
+</script>
+</body>
+</html>

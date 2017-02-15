@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var n=1;//全局变量
+    m=2;//全局变量
+    function demo(){
+        var i=3;//局部
+        x=4;//全局
+        alert(i);
+        alert(x);
+    alert(n);
+    alert(m);
+    demo();
+    alert(x);//只有先调用demo(),x才能实现全局变量的作用
+</script>
+</body>
+</html>

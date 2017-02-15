@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p name="pname">hello1</p>
+    <p name="pname">hello2</p>
+    <p name="pname">hello3</p>
+    <p name="pname">hello4</p>
+    <img id="iid"  alt="我是img"  src="1 .jpg"> </img>
+    <ul>
+        <li>l1</li>
+        <li>l2</li>
+        <li>l3</li>
+    </ul>
+    <br>
+    <ul>
+        <li>l5</li>
+        <li>l6</li>
+    </ul>
+    <div id="did">
+        <p id="pid">正常的p1</p>
+        <p>正常的p2</p>
+        <p>正常的p3</p>
+    </div>
+    <script>
+    //name属性可以同时控制多个控件,而id是唯一的
+    function name(){
+        var c=document.getElementsByName("pname");
+//      var c=document.getElementsByTagName("p");注意,此处p虽是标签,仍需用""包裹
+        alert(c.length);                        //输出4,标示c以集合的形式存在,有4个元素
+        var cc=c[2];
+        cc.innerHTML="hi";
+    }
+        name();
+
+
+    function attribute(){
+        var a=document.getElementById("id");
+        var aa=a.getAttribute("id");
+        alert(aa);
+//        var as= a.setAttribute("alt","img是我");    无需定义as= 用不到,直接如下
+        a.setAttribute("alt","img是我");
+        var ac= a.getAttribute("alt");
+        alert(ac);
+    }
+    attribute();
+
+
+    function childnode(){
+        var cn=document.getElementsByTagName("ul")[0].childNodes;//此处[0]标示第1个ul集,就算只有一个ul集也不能设省略
+        alert(cn.length);//输出7,因为元素n中的空格也被视为文本,共有4处空格
+        alert(cn[1].nodeType);//type:1,元素(标签) type:3,元素中的文本内容(空格)
+    }
+        childnode();
+
+
+    function parentnode(){
+        var p=document.getElementById("dp");
+        var div= p.parentNode;
+        alert(div.nodeName);
+    }
+        parentnode();
+
+    创建元素节点
+    function creatnode(){
+        var b=document.body;
+        var c=document.createElement("input"); //( )中为创建元素的性质
+        c.type="";       //可定义元素的类型,值等
+        c.value="";
+        b.appendChild(c);  //在文档*末尾*插入元素,此步骤不能忘
+    }
+        creatnode();
+
+
+    创建文本节点,同上
+    function txtnode(){
+        var b=document.body;
+        var c=document.createTextNode("我是文本");
+        b.appendChild(c);
+    }
+    txtnode();
+
+    添加精确位置节点
+    function addnode(){
+        var dn=document.getElementById("did");
+        var pn=document.getElementById("pid");
+        var an=document.createElement("p");
+        an.innerHTML="动态添加的p";
+        dn.insertBefore(an,pn);
+    }
+        addnode();
+
+        //removeNode和removeChild,前者可删除孙子,但firefox不支持
+        function removenode(){
+            var dn=document.getElementById("did");
+            var d=document.getElementsByTagName("div");//标示div的集合在,并不是其子元素的集合
+            var dc=document.getElementsByTagName("div")[0].childNodes;//[0]不能省略
+            alert(dc.length);
+            dn.removeChild(dn.childNodes[2]);      //千万不要写成document.removeChild,不知道谁要删除子节点
+        }
+        removenode();
+
+        //网页尺寸,offset和scroll,前者不包含滚动条
+        function size(){
+            var width=document.documentElement.offsetWidth||document.body.offsetWidth;
+            var height=document.documentElement.offsetHeight||document.body.offsetHeight;
+            alert(width+","+height);
+        }
+        size();
+    </script>
+</body>
+</html>
