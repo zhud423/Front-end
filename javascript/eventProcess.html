@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <!--html内的事件处理
+        最大的缺点:修改时需在html和js同事处理-->
+        <button id="btn" onclick="ep()">btn</button>
+    </div>
+    <script>
+        function ep(){
+            alert("html内的事件处理")
+        }
+
+
+        //dom0级事件,把函数赋值给事件处理程序
+        // 缺点:后事件覆盖前事件
+        var b=document.getElementById("btn");
+        b.onclick=function(){
+            alert("dom0级事件处理1");    //被覆盖
+        };
+        b.onclick=function(){
+            alert("dom0级事件处理2");
+        };
+        b.onclick=null;    //通过赋值为null清除事件
+
+
+        //dom2级事件处理,addeventlistener("事件",函数名,"布尔值(目前忽略)")
+        //不会覆盖,依次执行
+        document.getElementById("btn").addEventListener("click",d1);
+        document.getElementById("btn").addEventListener("click",d2);
+
+        function d1(){
+            alert("dom2级事件1")
+        }
+        function d2(){
+            alert("dom2级事件2")
+        }
+
+
+
+
+        //考虑浏览器兼容性
+        var btn=document.getElementById("btn");
+        if (btn.addEventListener){
+            btn.addEventListener("click",d);
+        }else if (btn.attachEvent()){         //专门针对ie8及以下,移除detach ,注意是else if,不是if else
+            btn.attachEvent("onclick",d);     //注意ie用"onclick"
+        }else {
+            btn.onclick=d();                  //针对老浏览器
+        }
+        function d(){
+            alert("hello")
+        }
+    </script>
+</body>
+</html>
