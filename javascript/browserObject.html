@@ -4,7 +4,102 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body onload="tt()">
+    <button id="btn" onclick="w()">btn</button>
+    <p id="pid">p1</p>
+    <button onclick="stopI()">stop</button>
+    <button onclick="startI()">restore</button>
+    <p id="pid2">p2</p>
+    <a href="historyForward.html">去historyforward</a>
+    <br>
+    <button onclick="f()">forward</button>
+    <button onclick="b()">back</button>
+    <div>
+        <input type="text" id="ip">
+        <button id="btn2" onclick="log()">log</button>
+    </div>
+    <script>
+    //window
+//    document.write(window.innerHeight+","+window.innerWidth);
+    // 全局变量即为window对象的成员,所以省去window,且日常使用均省去
+    //    window.document.write(window.innerHeight+","+window.innerWidth);
+    function w(){
+        window.open("http://jd.com","jd","toolbar=no,menubar=no"); //open方法的3个参数(url,windowname,features)
+        window.close();
+    }
 
+    //timer
+//    var it=setInterval(function(){w();},1000);
+//    function w(){
+//        document.write("hello");
+//    }
+    //interval(间隔)循环执行
+    var it=setInterval(function(){getTime()},1000);
+    //此处it可以省,但省了后clear时无法传参,所以一般都写
+    function getTime(){
+        var d=new Date();
+        var ts= d.toLocaleTimeString();
+        document.getElementById("pid").innerHTML=ts;
+    }
+    function stopI(){
+        clearInterval(it);         //it不能省
+    }
+    function startI(){
+        setInterval(function(){getTime()},1000);
+    }
+
+        //timeout,只执行一次
+//     a=setTimeout(function(){a()},2000);  这并不是自己调用自己,不能这样定义
+    setTimeout(function(){a()},2000);
+    function a(){
+        alert("hello");
+    }
+         //通过调用自己(函数执行项中调用函数)实现循环
+    function tt(){
+        var d=new Date();
+        document.getElementById("pid2").innerHTML=d;
+        var t=setTimeout(function(){tt()},1000);
+    }
+
+        //screen
+    document.write("高度:"+screen.height+",宽度:"+screen.width);
+    document.write("<br/>");
+    document.write("可用高度:"+screen.availHeight+",可用宽度:"+screen.availWidth);
+    document.write("<br/>");
+
+
+        //location,常用返回值
+    document.write(window.location.hostname);
+    document.write("<br/>");
+    document.write(window.location.pathname);//当前页面路径和文件夹,jd/index.html
+    document.write("<br/>");
+    document.write(window.location.port);
+    document.write("<br/>");
+    document.write(window.location.protocol);//http还是https
+    document.write("<br/>");
+    document.write(window.location.href);//当前页面url,完整网址:http://www.jd.com
+    document.write("<br/>");
+    document.write(window.location.assign("http://www.jd.com"));//指定新的url
+    document.write("<br/>");
+
+
+       //history
+    function f(){
+        history.forward();
+    }
+    function b(){
+        history.back();
+    }
+    function log(){
+        var n=document.getElementById("ip").value;
+        if (n=="zhu"){
+            alert("access");
+            history.go(1);
+        }else {
+            alert("noaccess");
+            history.go(-1);
+        }
+    }
+</script>
 </body>
 </html>
