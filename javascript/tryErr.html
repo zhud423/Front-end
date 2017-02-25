@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="ip">
+    <button id="btn" onclick="demo()">button</button>
+    <p id="pid"></p>
+<script>
+    try{
+//        alert(error);
+        alerte("error");
+    }
+    catch (err){
+        alert(err);
+    }
+
+    //带throw
+    function demo(){
+        try{
+            var d=document.getElementById("ip").value;
+            if (d==""){throw "null,please enter"}   //一定要先判断null,如果把它写到<5后,会默认为数值,且值为0
+            if (isNaN(d))throw "is not a number";    //isNaN(x)判断x是否是数字,此处if的{}可省略
+            if (d<5){throw "too small"}
+            if (d>10){throw "too big"}
+        }
+        catch (err){
+           document.getElementById("pid").innerHTML= "error:"+err;
+        }
+    }
+</script>
+</body>
+</html>

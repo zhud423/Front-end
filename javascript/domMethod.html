@@ -27,6 +27,7 @@
     </div>
     <script>
     //name属性可以同时控制多个控件,而id是唯一的
+/*
     function name(){
         var c=document.getElementsByName("pname");
 //      var c=document.getElementsByTagName("p");注意,此处p虽是标签,仍需用""包裹
@@ -63,14 +64,15 @@
         alert(div.nodeName);
     }
         parentnode();
+*/
 
     创建元素节点
     function creatnode(){
         var b=document.body;
         var c=document.createElement("input"); //( )中为创建元素的性质
-        c.type="";       //可定义元素的类型,值等
+        c.type="input";       //可定义元素的类型,值,classname等
         c.value="";
-        b.appendChild(c);  //在文档*末尾*插入元素,此步骤不能忘
+        b.appendChild(c);  //在父级空间创建根视图,在文档*末尾*插入元素,此步骤不能忘
     }
         creatnode();
 
