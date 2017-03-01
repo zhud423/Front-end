@@ -17,10 +17,10 @@
     function show(){
         alert(event.type);       //事件类型是click
         alert(event.target);      //事件目标是button元素
-        event.stopPropagation();  //阻止事件冒泡(向上一级冒)
+        //event.stopPropagation();  //阻止事件冒泡(向上一级冒)
     }
     function maopao(){
-        alert("maopao:"+event.type);
+        alert("maopao:"+event.target);
     }
     function a(){
         event.preventDefault();//阻止了a标签的默认属性跳转到地址

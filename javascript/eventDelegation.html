@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul id="ulid">
+        <li id="l1">l1</li>
+        <li id="l2">l2</li>
+        <li id="l3">l3</li>
+        <li id="l4">l4</li>
+        <li id="l5">l5</li>
+    </ul>
+    <script>
+        var gul=document.getElementById("ulid");
+        gul.addEventListener("hover",function(e){
+            if (e.target&& e.target.nodeName.toUpperCase=="li"){
+                alert("true");
+//                e.target.id.replace("ol");
+            }
+        });
+    </script>
+</body>
+</html>

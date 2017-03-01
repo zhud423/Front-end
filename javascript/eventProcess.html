@@ -28,7 +28,7 @@
         b.onclick=null;    //通过赋值为null清除事件
 
 
-        //dom2级事件处理,addeventlistener("事件",函数名,"布尔值(目前忽略)")
+        //dom2级事件处理,即句柄法,addeventlistener("事件",函数名,"布尔值(目前忽略)")
         //不会覆盖,依次执行
         document.getElementById("btn").addEventListener("click",d1);
         document.getElementById("btn").addEventListener("click",d2);
