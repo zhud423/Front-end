@@ -5,21 +5,40 @@
     <title>Title</title>
 </head>
 <body>
-    <ul id="ulid">
-        <li id="l1">l1</li>
-        <li id="l2">l2</li>
-        <li id="l3">l3</li>
-        <li id="l4">l4</li>
-        <li id="l5">l5</li>
+    <ul id="ul">
+        <li><button id="btn1">btn1</button></li>
+        <li><button id="btn2">btn2</button></li>
+        <li><button id="btn3">btn3</button></li>
+        <li><button id="btn4">btn4</button></li>
+        <li><button id="btn5">btn5</button></li>
     </ul>
     <script>
-        var gul=document.getElementById("ulid");
-        gul.addEventListener("hover",function(e){
-            if (e.target&& e.target.nodeName.toUpperCase=="li"){
-                alert("true");
+        //用for循环简写,但内存中仍是每个button带一个函数
+//        var gb=document.getElementsByTagName("button");
+//        for(i=0;i<gb.length;i++){
+//            gb[i].onclick=function(){
+//                this.style.background="#728";
+//            }
+//        }
+
+
+        //用事件委托,父级一个函数监听子级的变化
+        var gul=document.getElementById("ul");
+        gul.addEventListener("click",fs);      //find son,且不是fs()
+        function fs(){
+            event.target.style.background="#728";
+            alert(event.target.id);
+        }
+
+
+        //事件委托,经典案例,为何不行
+        // gul.addEventListener("click",function(e){
+//            var e=e;
+//            if (e.target.nodeName=="li"){
+//                console.log("true");
 //                e.target.id.replace("ol");
-            }
-        });
+//            }
+//        });
     </script>
 </body>
 </html>
