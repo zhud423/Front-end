@@ -6,14 +6,6 @@
 </head>
 <body>
 <script>
-    //事前说明
-    //ie6以下ie用ActiveXObject,ie6用;ie5及更老的用
-    //浏览器兼容性,ie7及其他现代浏览器均支持XMLHttpRequest()
-    //其中,XMLHttpRequest()分为两个版本,version2兼容version1所有,并且有新特性:
-    // 1.timeout超时,请求在规定时间被未完成,到时自动终止
-    // 2.cors跨域,version1不支持跨域
-    // 3.upload,文件2进制数据的下载上传
-
     //步骤
     //1.创建XMLHttpRequest
     var xhr=new XMLHttpRequest();
@@ -58,7 +50,35 @@
     };
 
 
+    //浏览器兼容性和版本说明
+    //ie6以下ie用ActiveXObject,ie6用Msxm12.XMLHTTP;ie5及更老的用Microsoft.XMLHTTP
+    //浏览器兼容性,ie7及其他现代浏览器均支持XMLHttpRequest()
+    //其中,XMLHttpRequest()分为两个版本,version2兼容version1所有,并且有新特性:
+    // 1.timeout超时,请求在规定时间被未完成,到时自动终止
+    // 2.cors跨域,version1不支持跨域
+    // 3.upload,文件2进制数据的下载上传
 
+
+    //创建xhr兼容写法
+    var xhr=null;
+    function cxhr(){
+        if(window.XMLHttpRequest){                             //ie7以上和其他
+            xhr=new XMLHttpRequest();
+        }else if (window.ActiveXObject){
+            try{
+                xhr=new ActiveXObject("Msxm12.XMLHTTP");       //ie6
+            }
+            catch (err){
+                try {
+                    xhr=new ActiveXObject("Microsoft.XMLHTTP");//ie5
+                }
+                catch (err){
+                    console.log("已经全兼容了,不能再报错了");     //
+                }
+            }
+        }
+        return xhr;
+    }
 
     //timeout事件
     xhr.timeout=5000;
