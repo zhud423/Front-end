@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="btn1" onclick="crossDomainLimited()">btn1</button>
+    <script src="jquery.min.js"></script>
+<script>
+    function crossDomainLimited(){
+        var url="/test";
+        var url="http://www.a.com";
+        $.ajax(url).done()
+    }
+</script>
+</body>
+</html>
