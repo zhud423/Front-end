@@ -3,11 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            width:300px;
+            height:30px;
+            border:1px solid #000;
+            margin-top: 150px;
+            margin-left: 200px;
+            padding-left: 5px;
+        }
+        ul{
+            width:300px;
+            border:1px solid #000;
+            list-style: none;      /*无此设置,会呈现无序列表的样式*/
+            display: none;
+            margin-left: 200px;
+            padding-left: 5px;
+        }
+        li{
+            line-height: 120%;    /*100%行高:字和字紧挨着,相当于0行距*/
+        }
+    </style>
 </head>
 <body>
-    <input type="text">
-    <script>
+    <input type="text" id="inputSearch">
+    <ul id="ulList">             <!-- 用于承载返回的搜索内容-->
+        <!--此时li为空-->
+    </ul>
+<script>
+    function callback(response){
+        var gUl = document.getElementById("ulList");
+        var list='';
+        if(response.s.length !=0){
+            gUl.style.display='block';
+            for(var i = 0;i<response.s.length;i++){
+                list+="<li><a href='http://www.baidu.com/su?wd='+response.s[i]>"+response.s[i]+"</a></li>";
+               //document.getElementsByTagName("a")[i].style.cssText="color:#999";
+            }
+        }
+        gUl.innerHTML = list;
+    }
+</script>
+<script>
+    window.onload = function(){
+        //获取dom元素
+        var Data = document.getElementById('inputSearch');
+        var gUl = document.getElementById('ulList');
 
-    </script>
+        //键盘按下后抬起触发事件(onkeyup)
+        Data.onkeyup = function(){
+            if(Data.value != ''){
+                //创建script标签(createElement)
+                var script = document.createElement("script");
+                //添加其它域地址
+                script.src="http://unionsug.baidu.com/su?wd="+this.value+"&cb=callback";
+                //此处特别注意url后要加?回调函数
+                //添加给body的
+                document.body.appendChild(script);
+            }else{
+                gUl.style.display='none';
+            }
+        }
+    };
+</script>
 </body>
 </html>

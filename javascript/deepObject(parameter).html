@@ -12,7 +12,7 @@
         _this.say=function(){
         alert("hello"+_this._name);
         };
-        return _this;//必须返回
+        return _this;//必须返回,否则定义的属性不能传给this对象
     }
     function man(name){
         var _this=person(name);//此时this包含person的全部属性,实现继承

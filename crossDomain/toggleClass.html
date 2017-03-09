@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .origin{width: auto;;height:auto;}
+    .min{width:200px;height:auto;}
+</style>
+<body>
+     <img  class="min" src='1.jpg'>
+     <img  class="min" src='1.jpg'>
+     <img  class="min" src='1.jpg'>
+     <img  class="min" src='1.jpg'>
+     <img  class="min" src='1.jpg'>
+     <img  class="min" src='1.jpg'>
+
+     <script src="jquery.min.js"></script>
+     <script>
+         $('.min').click(function(){
+             $(this).toggleClass('min');
+             $(this).toggleClass('origin');
+         });
+     </script>
+</body>
+</html>
