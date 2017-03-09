@@ -41,22 +41,31 @@
         if(response.s.length !=0){
             gUl.style.display='block';
             for(var i = 0;i<response.s.length;i++){
-                list+="<li><a href='http://www.baidu.com/su?wd='+response.s[i]>"+response.s[i]+"</a></li>";
-               //document.getElementsByTagName("a")[i].style.cssText="color:#999";
+                list+="<li><a>"+response.s[i]+"</a></li>";
             }
         }
         gUl.innerHTML = list;
+        var ga=document.getElementsByTagName("a");
+        for (j=0;j<ga.length;j++){
+            ga[j].style.cssText="text-decoration:none; color:#000;";
+            ga[j].href="https://www.baidu.com/s?ie=UTF-8&wd="+response.s[j];//注意此处是s[j]，不是s[]
+            // s[]只能链接到最后一个i，而非一一对应的i
+        }
+        //直接把i赋值给j不能实现
+//        j=i;
+//        ga[j].style.cssText="text-decoration:none; color:#000;";
+//        ga[j].href="https://www.baidu.com/s?ie=UTF-8&wd="+response.s[i];
     }
 </script>
 <script>
     window.onload = function(){
         //获取dom元素
-        var Data = document.getElementById('inputSearch');
+        var data = document.getElementById('inputSearch');
         var gUl = document.getElementById('ulList');
 
         //键盘按下后抬起触发事件(onkeyup)
         Data.onkeyup = function(){
-            if(Data.value != ''){
+            if(data.value != ''){
                 //创建script标签(createElement)
                 var script = document.createElement("script");
                 //添加其它域地址

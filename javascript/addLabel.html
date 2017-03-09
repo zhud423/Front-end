@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul id="ul">
+        <li><button>btn</button></li>
+    </ul>
+<script>
+    var gul=document.getElementById("ul");
+    gul.addEventListener("click",addLabel);//event delegation监听click事件
+    function addLabel(){
+        //innerHtml添加标签
+        var list="";
+        for (i=0;i<5;i++){
+            var h=[0,1,2,3,4,5];
+//        var b={"line1","line2"};      {}不存在序列
+//        list+="<li>"+"<a>"+a[i]+"</a>"+"</li>"; 两种写法均可,下面的简单
+            list+="<li><a>"+h[i]+"</a></li>";
+        }
+        gul.innerHTML=list;
+
+        //为新添加的标签添加属性
+        var ga=document.getElementsByTagName("a");
+        for (j=0;j<ga.length;j++){
+            ga[j].style.cssText="background:#999";
+            ga[j].href="https://www.baidu.com/s?ie=UTF-8&wd="+h[j];//此处不能写h[i]
+            // i为跳出for循环的数,是个固定值,并不能让每一列和网址一一对应,所以要用h[j]
+        }
+    }
+</script>
+</body>
+</html>
