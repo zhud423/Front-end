@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>从a域向b域发起请求,如果b域的响应数据中包含标志许可信息,浏览器就会放行,实现跨域<br>
+    (cors.html:Access-Control-Allow-Orgin,该标志是一个响应头,且标志的值是发起请求域的值)<br>
+    实现方法,在后端加标志头(res.setHeader("Access-Control-Allow-Orgin","b域名"))
+</p>
+<button onclick="crossAjax()">btn</button>
+<script>
+    function crossAjax(){
+        $.ajax("http://www.a.com").done(function(){
+            alert(data);
+        })
+    }
+</script>
+</body>
+</html>
