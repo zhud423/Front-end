@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script src="web.js"></script>
+</head>
+<body>
+	<p id="msg"></p>
+	<input type="text" id="input">
+	<input type="button" value="save data" onclick="savestorge('input')">
+	<input type="button" value="load data" onclick="loadtorge('msg')">
+	<input type="button" value="submit" onclick="">
+	<script>
+		//function savestorge(id){
+//    var target=document.getElementById(id);
+//    var str=target.value;
+//    //save data: key value
+//    sessionStorage.setItem("message",str);
+//}
+//
+//
+//function loadtorge(id){
+//    var target=document.getElementById(id);
+//    //load data
+//    var msg=sessionStorage.getItem("message");
+//   target.innerHTML=msg;
+//}
+
+
+function savestorge(id){
+    var target=document.getElementById(id);
+    var str=target.value;
+    //save data: key value
+    localStorage.setItem("message",str);
+}
+
+
+function loadtorge(id){
+    var target=document.getElementById(id);
+    //load data
+    var msg=localStorage.getItem("message");
+    target.innerHTML=msg;
+}
+	</script>
+</body>
+</html>
