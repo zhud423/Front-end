@@ -16,13 +16,13 @@
         }
         var m=new person("zhu");
         window.person = person;//公布外界使用的接口
-    }());
+    })();
     (function(){
         function c(){
             alert("hi"+n);//上面闭包中的n被隐藏,此处不能被调用,用window公布后可以调用
         }
         c();
-    }());
+    })();
 </script>
 </body>
 </html>

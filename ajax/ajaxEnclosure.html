@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //ajax封装,所有方法写在自运行函数里,好处:变量隔离,避免名称污染
+   /* ajax(options) //需要改变默认行为用options参数,一般不用
+            .before()
+            .header()
+            .headers()
+            .get|post|(url,data,[contentType]) //[contentType]数据形式字符串,也可为json
+            .success(callback(returndata,xhr),[jsonForceValidate=true]) //可选项,默认false,true时强制json转换,错误跳转到.erro
+                     // 一般我们期望返回是json格式,会直接转换成字符串,但是当返回错误数据,转换出错
+            .error(callback(statusCode,responseText,xhr))
+            .always(callback(statusCode,responseText,xhr)) //不管成功或是错误都执行
+            //sucess error always都可以多次使用
+            .timeout(timeout,[callback(xhr)])*/
+    //所有方法返回的都是对象,,链式操作
+    (function () {
+        window.ajax=function (options) {   //为了使外部能访问ajax方法中的内容,用window公布出去
+            var defaultOptions={
+                async:true
+            };
+            options=extend(defaultOptions,options);
+
+            //核心功能对象
+            var _obj={
+                xhr:createXhr(),
+                successCallbacks:[],   //先定义数组,用来存放回调
+                errorCallbacks:[],
+                alwaysCallbacks:[],
+                options:options //传入值覆盖默认值
+            };
+            
+            
+            //设置前置处理方法
+            _obj.before=function (callback) {
+                typeof (callback)==="function" && callback(_obj.xhr);//_obj.xhr作为参数传给回调
+                return _obj; //为了支持后续链式处理
+            };
+
+            //设置请求头处理方法 ,一定要在post,get之前,否则无意义
+            _obj.header=function (name,value) {
+                _obj.xhr.setRequestHeader(name,value);
+                return _obj; //为了支持后续链式处理
+            };
+
+            _obj.headers=function (headers) {
+                if (Object.prototype.toString.call(headers)==="[object object]"){
+                    for (var name in headers){
+                        _obj.xh8r.setRequestHeader(name,headers[name]);  //(属性名,属性值)
+                    }
+                }
+                return _obj; //为了支持后续链式处理
+            };
+
+            //成功时的回调
+            _obj.success=function (callback,jsonForceValidate) {
+                _obj.jsonForceValidate =jsonForceValidate;
+                if (typeof (callback)==="function"){
+                    _obj.successCallbacks.push(callback); //数组尾部追加值
+                }
+                return _obj;
+            };
+
+            //失败时的回调
+            _obj.error=function (callback) {
+                if (typeof (callback)==="function"){
+                    _obj.errorCallbacks.push(callback); //数组尾部追加值
+                }
+                return _obj;
+            };
+
+            //设定超时时间方法
+            _obj.timeout=function (timeout,callback) {
+                _obj.xhr.timeout=timeout;
+                if (typeof (callback)==="function"){
+                    _obj.xhr.timeout=function () {
+                        callback(_obj.xhr);
+                    }
+                }
+                return _obj;
+            };
+
+            //get
+            _obj.get=function (url,data) {
+              if (typeof (url)==="undefined") throw "url不能为空";
+              if (Object.prototype.toString.call(data)!=="[object object]")
+                  data=undefined;
+              doAjax(_obj,"get",url,data,"urlencoded");
+              return _obj;
+            };
+
+            //post
+            _obj.post=function (url,data) {
+                if (typeof (url)==="undefined") throw "url不能为空";
+                if (Object.prototype.toString.call(data)!=="[object object]")
+                    data=undefined;
+                if (typeof (contentType)!=="string")
+                    contentType="urlencoded";
+                doAjax(_obj,"post",url,data,"contentType");
+                return _obj;
+            };
+
+
+            //函数们
+            //用otherop替换defaultopd的值
+            function extend(defaultOp,otherOp) {
+                if (Object.prototype.toString.call(defaultOp)==="[object object]"
+                        && Object.prototype.toString.call(otherOp)==="[object object]"){
+                    for (var opName in otherOp){
+                        defaultOp[opName]=otherOp[opName];
+                    }
+                }
+                return defaultOp;
+            }
+
+            function createXhr(){
+                if(window.XMLHttpRequest){                             //ie7以上和其他
+                    xhr=new XMLHttpRequest();
+                }else if (window.ActiveXObject){
+                    try{
+                        xhr=new ActiveXObject("Msxm12.XMLHTTP");       //ie6
+                    }
+                    catch (err){
+                        try {
+                            xhr=new ActiveXObject("Microsoft.XMLHTTP");//ie5
+                        }
+                        catch (err){
+                            console.log("已经全兼容了,不能再报错了");     //
+                        }
+                    }
+                }
+                return xhr;
+            }
+
+            function doAjax(_obj,method,url,data,contentType){
+                //createXhr
+                var xhr=_obj.xhr;
+
+                data=encodeData(data,contentType);
+
+                //get请求,将编码后的data作为查询参数附加到url上
+                if("get"===method){
+                    url+=(url.indexOf("?")== -1 ? "?":"&")+data;
+                }
+
+                //绑定事件处理器
+                bindEventHandler();
+
+                //2.初始化请求信息 ,设置各类属性(发到哪里,发什么数据,用什么方法发)
+                xhr.open(method,url,true);//true可以用_obj.options.async代替
+
+                //3.发送请求
+                if("post"===method&&data){
+                    xhr.setRequestHeader("Content-Type",_obj.postContentType);//给请求加头部信息,指定Content-Type
+                    xhr.send(data);
+                }else {
+                    xhr.send();
+                }
+
+
+                xhr.send(JSON.stringify({     //发送json格式数据给服务器
+                    keywords:"c",
+                    other:"d"
+                }));
+
+                //4.接收响应并进行处理
+                xhr.onreadystatechange= function (err) {     //传统写法
+                    //readystate5种状态
+                    //0.
+                    //1.
+                    if(xhr.readyState==4&&xhr.status==200){//http status (状态码)500 404 403,虽然数据发送完成,但结果不正确,200结果才正确
+                        JSON.parse(xhr.responseText);         //浏览器支持json对象,如果需要对响应结果进一步操作,则把json字符串转换成dom对象,不需要直接用text就行
+                        eval(xhr.responseText);               //不支持
+                        //响应结果中可获取的内容
+                        //1.responseText         Content-Type为html,js,json等统一为它
+                        //2.xhr.responseXML       Content-Type为xml格式时,只能返回它,现在xml不常用
+                        //3.xhr.getResponseHeader("Content-Type");
+                        //4.xhr.getAllResponseHeaders();
+                        //5.xhr.status;
+                        //6.xhr.statusText;                   状态吗对应的文本,200对应ok,404对应forbid
+                    }
+                };
+            }
+            
+            function encodeData() {
+                
+            }
+
+            function bindEventHandler(){
+                
+            }
+        }
+    })();
+</script>
+</body>
+</html>

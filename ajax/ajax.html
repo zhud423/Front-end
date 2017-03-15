@@ -6,13 +6,15 @@
 </head>
 <body>
 <script>
-    //步骤
+    //一、步骤
     //1.创建XMLHttpRequest
     var xhr=new XMLHttpRequest();
-    //2.初始化请求信息
+
+    //2.初始化请求信息 ,设置各类属性(发到哪里,发什么数据,用什么方法发)
     xhr.open("GET","http://?keywords=c",true,"","");
     //5个参数(提交方法,url,异步是true,用户名,密码)  注意:get方法的查询数据在url里,用?连接,后2个参数一般不用
     //异步请求的缺点:编码复杂度提升,在不影响用户体验的前提下,可用同步
+
     //3.发送请求
     xhr.send();
 
@@ -47,19 +49,10 @@
         }
     };
     xhr.onload=function(){               //version2下简化写法,onload相当于readystate==4
+
     };
 
-
-    //浏览器兼容性和版本说明
-    //ie6以下ie用ActiveXObject,ie6用Msxm12.XMLHTTP;ie5及更老的用Microsoft.XMLHTTP
-    //浏览器兼容性,ie7及其他现代浏览器均支持XMLHttpRequest()
-    //其中,XMLHttpRequest()分为两个版本,version2兼容version1所有,并且有新特性:
-    // 1.timeout超时,请求在规定时间被未完成,到时自动终止
-    // 2.cors跨域,version1不支持跨域
-    // 3.upload,文件2进制数据的下载上传
-
-
-    //创建xhr兼容写法
+    //一.1中创建xhr兼容写法
     var xhr=null;
     function cxhr(){
         if(window.XMLHttpRequest){                             //ie7以上和其他
@@ -80,7 +73,17 @@
         return xhr;
     }
 
-    //timeout事件
+
+    //浏览器兼容性和版本说明
+    //ie6以下ie用ActiveXObject,ie6用Msxm12.XMLHTTP;ie5及更老的用Microsoft.XMLHTTP
+    //浏览器兼容性,ie7及其他现代浏览器均支持XMLHttpRequest()
+    //其中,XMLHttpRequest()分为两个版本,version2兼容version1所有,并且有新特性:
+    // 1.timeout超时,请求在规定时间被未完成,到时自动终止
+    // 2.cors跨域,version1不支持跨域
+    // 3.upload,文件2进制数据的下载上传
+
+
+    //version2支持timeout事件
     xhr.timeout=5000;
     xhr.ontimeout= function () { //超时监听器可做需要的处理
         alert("timeout");

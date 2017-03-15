@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="sea-modules/seajs/seajs/2.2.0/sea.js"></script>
+<script type="text/javascript">
+    // seajs 的简单配置
+    seajs.config({
+        base: "./sea-modules/",      //要定义到当前目录
+        alias: {
+            "jquery": "jquery/jquery/1.10.1/jquery.js"  //此处的jquery是seajs修改过的
+        }
+    });
+
+    // 加载入口模块
+    seajs.use("./static/main");
+    /*// For development
+    if (location.href.indexOf("?dev") > 0) {
+        seajs.use("static/main");
+    }
+    // For production
+    else {
+        seajs.use("../static/main");//注意此处是demo,非demo.js
+    }*/
+</script>
+</body>
+</html>
