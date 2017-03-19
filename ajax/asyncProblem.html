@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.按照同步的书写习惯写代码(即语句会依次执行)
+    //问题:回调函数的值未成功返回后,就执行了操作,导致操作的值仍是初始定义值,而非返回值
+    function p1() {
+        var ret;
+        ajax().get("url").success(function (callback) {
+            ret=callback;
+        });
+        alert(ret);
+    }
+    //解决办法:后续操作alert(callback)放入匿名函数中
+
+
+    //2.函数未设置return值
+    // 问题:js中,function没有return值,它执行完后值为undefined
+    function p2() {
+        var ret;
+        ajax().get("url").success(function (callback) {
+            return callback;  //此处的return没有意义,异步请求发送,js不会阻塞,等待结果返回,而是继续执行,所以此时并没有返回值回来
+        });
+    }
+    alert(p2());
+    //解决办法:
+    //监听结果返回,用callback
+    function p2s(callback) {
+        var ret;
+        ajax().get("url").success(function (data) {
+            callback(data);
+        });
+    }
+    p2s(function (data) {
+        alert(data);
+    });
+</script>
+</body>
+</html>

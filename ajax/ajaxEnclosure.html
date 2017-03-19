@@ -19,6 +19,7 @@
             //sucess error always都可以多次使用
             .timeout(timeout,[callback(xhr)])*/
     //所有方法返回的都是对象,,链式操作
+
     (function () {
         window.ajax=function (options) {   //为了使外部能访问ajax方法中的内容,用window公布出去
             var defaultOptions={
@@ -107,6 +108,7 @@
 
 
             //函数们
+
             //用otherop替换defaultopd的值
             function extend(defaultOp,otherOp) {
                 if (Object.prototype.toString.call(defaultOp)==="[object object]"
@@ -175,14 +177,8 @@
                     //1.
                     if(xhr.readyState==4&&xhr.status==200){//http status (状态码)500 404 403,虽然数据发送完成,但结果不正确,200结果才正确
                         JSON.parse(xhr.responseText);         //浏览器支持json对象,如果需要对响应结果进一步操作,则把json字符串转换成dom对象,不需要直接用text就行
-                        eval(xhr.responseText);               //不支持
-                        //响应结果中可获取的内容
-                        //1.responseText         Content-Type为html,js,json等统一为它
-                        //2.xhr.responseXML       Content-Type为xml格式时,只能返回它,现在xml不常用
-                        //3.xhr.getResponseHeader("Content-Type");
-                        //4.xhr.getAllResponseHeaders();
-                        //5.xhr.status;
-                        //6.xhr.statusText;                   状态吗对应的文本,200对应ok,404对应forbid
+                        eval(xhr.responseText);               //浏览器不支持json对象
+
                     }
                 };
             }

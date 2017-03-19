@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="tc()"></button>
+<script>
+    function tc() {
+        //只有ie上,get请求时,请求的url不变。callback会被浏览器缓存到本地,下次再请求时,不会向服务器请求
+        ajax().get("url").success(function (callback) {
+            alert(callback);
+        });
+       // 解决上述问题,在url后附加东西让其不同,一般加个当前时间的毫秒数:
+        // get("url?t=new Date().getTime()")
+    }
+
+</script>
+</body>
+</html>
