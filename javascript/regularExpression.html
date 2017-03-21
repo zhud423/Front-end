@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str="hello1 word2,Hello3 zhud4";
+    var e1=new RegExp("hello");
+    var e2=/word/g;          //其中第二个/后可以跟属性值,g（golbal),l(local),（ignore大小写)
+    var e3=/Wor/ig;        //属性值可以结合
+    var e4=/\d+/;           //查找数字,注意写法
+    var e5=/\d+/g;
+
+    //正则表达式的方法
+    /*console.log(e1.test(str));  //注意e1和str的顺序,输出bool
+    console.log(e2.exec(str));  //execute输出index
+    console.log(str.search(e3));//输出index
+    console.log(str.match(e4)); //只找到str中的第一个数字
+    console.log(str.match(e5)); //找到所有的数字
+    console.log(str.replace(/hello/ig,"hi"));
+    console.log(str);    //注意,上一行只是替换,而后赋值给内存的临时变量temp,str值不变
+    console.log(str.split(""));  //把str分割成所有单个字符的数组,包括空格
+    console.log(str.split(/\s+/));//把str按照str中的子字符串分割成数组,以空格为界
+    console.log(str.split(/\d+/));//?*/
+
+    //正则写法
+    var p1=/[a-w]/g;    //a-h之间所有的字符
+    var p2=/[hello]/ig; //所有
+    var p3=/a|b|d/; // |或
+    var p4=/[^adhl]/;   //第一个,^表示非 ,^ad=^a|^d,所以输出是第一个^a或^d字符
+    var p5=/h.l/g;      //str中h和l包裹的字符串
+    var p6=/\w/;      //第一个,单词字符,包括字母,数字,下划线
+//    /\D/       //非数字字符
+//    /\s/       //空字符,包括space,tab,br
+//    /\S/
+//    /\n/         //换行符
+    var p7=/\bzhud4/;       //单词边界 前后边界都行,也可以多个字符作为边界
+    var p8=/a+/;          //等价于{1,}含有至少一个x的字符串,x为任意字符
+    var p9=/a*/;          //等价于{0,}
+    var p10=/lo?/;          //等价于{0,1}
+    var p11=/o$/;          //以o结尾
+    var p12=/^h/;          //以h开头
+
+    console.log(str.match(p2));
+    console.log(str.match(p9));
+    console.log(str.match(p10));
+
+
+
+
+</script>
+</body>
+</html>
