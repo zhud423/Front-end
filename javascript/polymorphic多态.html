@@ -1,4 +1,12 @@
-var Car = {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var Car = {
         initWithColor: function( color ){
 
             var self = {};
@@ -7,7 +15,7 @@ var Car = {
         }
     };
 
-    var Ford = {
+    var Ferrari = {
         initWithColor: function( color ){
 
             var self = Car.initWithColor( color );
@@ -16,4 +24,8 @@ var Car = {
         }
     };
 
-    var aFord = Ford.initWithColor( 'orange' );
+    var FerrariColor = Ferrari.initWithColor( 'red' ); //它有两个属性lightColor和color
+    console.log(FerrariColor);
+</script>
+</body>
+</html>

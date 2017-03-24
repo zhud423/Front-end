@@ -37,13 +37,13 @@
 //    /\S/
 //    /\n/         //换行符
     var p7=/\bzhud4/;       //单词边界 前后边界都行,也可以多个字符作为边界
-    var p8=/a+/;          //等价于{1,}含有至少一个x的字符串,x为任意字符
-    var p9=/a*/;          //等价于{0,}
-    var p10=/lo?/;          //等价于{0,1}
+    var p8=/wo+/;          //等价于{1,} 匹配前面的表达式至少一次,并且输出为第一次
+    var p9=/wo*/;          //等价于{0,}
+    var p10=/wo?/;          //等价于{0,1}
     var p11=/o$/;          //以o结尾
     var p12=/^h/;          //以h开头
 
-    console.log(str.match(p2));
+    console.log(str.match(p8));
     console.log(str.match(p9));
     console.log(str.match(p10));
 

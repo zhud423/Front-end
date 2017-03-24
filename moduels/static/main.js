@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     //var js1=require.async("./js1",function(js1_callback){
     //    alert(js1_callback.doSomething());
     //上下两种写法都行
-        var js1=require.async("./js1",function(js1){   //CMD默认同步,改为异步
+        var js1=require.async("./js1",function(js1){   //seajs遵循CMD,默认同步,改为异步
             console.log(js1);
 
     });
