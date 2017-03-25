@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function cx(name){
+        var o =new Object();
+        o.name=name;
+        return o;
+    }
+    var x1=cx("zhud");             //不能识别对象类型
+
+    function Xx(name){          //构造函数法,函数首字母惯例大写
+        this.name=name;
+        this.name=function(){  //属性也可以定义为函数形式
+            alert(name);
+        }
+    }
+    var x1=new Xx("zhud");
+    var x2=new Xx("zhudong");
+    console.log(x1 instanceof Xx); //判断x1是否为x方法的实例 ,能够识别对象类型
+                                //缺点:每次new的对象属性不同,则方法Xx就要重写
+
+
+    function x(){
+
+    }
+    x.prototype.name="zhud";
+    x.prototype.alertName=function(){
+       alert(this.name);
+    };
+    var x1=new x();
+    var x2=new x();
+    x1.name="zhudong";
+    x1.alertName();
+    x2.alertName();
+                            //缺点:实例x1修改了引用,实例x2随之更改引用?  测试结果并未修改?
+                             //省略了构造函数传递初始化参数这一环节，结果所有实例在默认情况下都取得了相同的属性值，这样非常不方便
+
+
+    //所以我们采用函数构造和原型的混合模式创建对象
+    //构造函数定义基本属性,原型定义实例间共享和可修改的属性
+    function Xx(name){
+        this.name=name;
+    }
+    Xx.prototype.friends="q";
+    var x1=new Xx("zhud");
+    var x2=new Xx("zhudong");
+    x1.friends="a";
+    x2.friends="b";
+    x1.name="z";
+    console.log(x2.friends);
+    console.log(x1.name);
+    console.log(x2.name);
+</script>
+</body>
+</html>
