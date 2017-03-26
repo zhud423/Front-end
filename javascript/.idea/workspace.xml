@@ -20,12 +20,12 @@
     <favorites_list name="js3" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="createObjectMedhodCompare.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/createObjectMedhodCompare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9103691">
-              <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.73813707">
+              <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -75,8 +75,8 @@
         <option value="$PROJECT_DIR$/regularExpression.html" />
         <option value="$PROJECT_DIR$/test.js" />
         <option value="$PROJECT_DIR$/object.html" />
-        <option value="$PROJECT_DIR$/createObjectMedhodCompare.html" />
         <option value="$PROJECT_DIR$/switch.html" />
+        <option value="$PROJECT_DIR$/createObjectMedhodCompare.html" />
       </list>
     </option>
   </component>
@@ -86,7 +86,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="226" />
+    <option name="x" value="332" />
     <option name="y" value="22" />
     <option name="width" value="1011" />
     <option name="height" value="713" />
@@ -221,7 +221,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="226" y="22" width="1011" height="713" extended-state="0" />
+    <frame x="332" y="22" width="1011" height="713" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28585857" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -607,14 +607,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26362038">
           <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/createObjectMedhodCompare.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9103691">
-          <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.73813707">
+          <caret line="36" column="19" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
           <folding />
         </state>
       </provider>
