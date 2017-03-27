@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-	<script src="web.js"></script>
 </head>
 <body>
 	<p id="msg"></p>
 	<input type="text" id="input">
 	<input type="button" value="save data" onclick="savestorge('input')">
 	<input type="button" value="load data" onclick="loadtorge('msg')">
+<!--
 	<input type="button" value="submit" onclick="">
+-->
 	<script>
-		//function savestorge(id){
-//    var target=document.getElementById(id);
-//    var str=target.value;
-//    //save data: key value
-//    sessionStorage.setItem("message",str);
-//}
-//
-//
-//function loadtorge(id){
-//    var target=document.getElementById(id);
-//    //load data
-//    var msg=sessionStorage.getItem("message");
-//   target.innerHTML=msg;
-//}
-
+//HTML5新特性 web页面数据本地存储
 
 function savestorge(id){
     var target=document.getElementById(id);
     var str=target.value;
     //save data: key value
-    localStorage.setItem("message",str);
+    localStorage.setItem("message",str);     //永远存储
+    //sessionStorage.setItem("message",str); 浏览器关闭数据删除
+
 }
 
 

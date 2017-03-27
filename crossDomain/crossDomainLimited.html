@@ -5,16 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-    <button id="btn1" onclick="crossDomainLimited()">btn1</button>
-    <iframe src="http://baidu.com" frameborder="0" style="display: none;"></iframe>
+    <button id="btn1" onclick="crossDomainLimited()">提交</button>
+    <iframe src="http://baidu.com" frameborder="0" style="display: none;" ></iframe>
     <script src="jquery.min.js"></script>
 <script>
     function crossDomainLimited(){
-        var url="/test";
+        var url="http://a.test.com";
         var url1="http://www.a.com";
         //ajax跨域限制,
         //向某个url发起ajax请求,然后绑定成功和失败事件
-        $.ajax(url1).done(function (data) {
+        $.ajax(url).done(function (data) {
             alert(data);
         }).fail(function(){
             alert("请求失败")

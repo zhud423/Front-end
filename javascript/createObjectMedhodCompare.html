@@ -8,11 +8,11 @@
 <script>
     //工厂法
     function cx(name){
-        var o =new Object();
+        var o =new Object();       //工厂法关键
         o.name=name;
-        return o;
+        return o;                  //另一关键
     }
-    var x1=cx("zhud");             //不能识别对象类型
+    var x1=cx("zhud");             //缺点:不能识别对象类型
 
     //构造函数法
     function Xx(name){          //函数首字母惯例大写
@@ -24,7 +24,14 @@
     var x1=new Xx("zhud");
     var x2=new Xx("zhudong");
     console.log(x1 instanceof Xx); //判断x1是否为x方法的实例 ,能够识别对象类型
-                                //缺点:每次new的对象属性不同,则方法Xx就要重写
+                                    //缺点:每次new的对象属性不同,则方法Xx就要重写
+
+    console.log(Xx.constructor==Xx);//false
+    console.log(Xx.prototype.constructor==Xx);//true
+    console.log(x1.constructor==Xx);//true
+    console.log(x1.hasOwnProperty('constructor'));//false
+
+
 
     //原型法
     function x(){

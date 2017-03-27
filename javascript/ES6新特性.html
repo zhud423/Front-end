@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Traceur google转换软件
+
+
+    //函数可直接写
+    var person={
+        name(name){
+            console.log(name);
+        }
+    }
+
+
+    //=>箭头代替函数格式
+    (item,i) => console.log(item,i);  //两个形参
+    item => console.log(item);  //单形参
+
+    //class预留名启用
+    class person{
+        constructor(name) {
+            this.name = name;
+        }
+    }
+    class Man extends person {
+        constructor(name, sex) {
+            super(name);      //初始化从父类的继承
+            this.sex = sex;
+        }
+    }
+
+    //let 代替 var， const定义常量
+
+    //原生支持moduels
+    //将不同功能的代码分别写在不同文件中，各模块只需 导出(export) 公共接口部分，
+    // 然后在需要使用的地方通过模块的 导入(import) 就可以了。
+</script>
+</body>
+</html>
