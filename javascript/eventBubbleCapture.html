@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #did{
+            border:1px solid #1b6d85;
+        }
+    </style>
 </head>
 <body>
     <div id="did">
@@ -10,21 +15,29 @@
         <a href="http://jd.com">jd</a>
     </div>
 <script>
-    //事件冒泡和捕获,前者由具体细节到文档,常用,后者相反
-    document.getElementById("btn").addEventListener("click",show);//event可以是click,mouseover,hoverd,etc.
+    //事件冒泡
+    // 由具体细节到文档,常用,后者相反
+    document.getElementById("btn").addEventListener("click",show);//event可以是click,mouseover,hover,etc.
     document.getElementById("did").addEventListener("click",maopao);//对div本身没有click事件,由于冒泡,也会有输出
-    document.getElementsByTagName("a")[0].addEventListener("click",a);
+    document.getElementsByTagName("a")[0].addEventListener("click",pa);
     function show(){
-        alert(event.type);       //事件类型是click
-        alert(event.target);      //事件目标是button元素
+        console.log(event.type);       //事件类型是click
+        console.log(event.target);      //事件目标是button元素
         //event.stopPropagation();  //阻止事件冒泡(向上一级冒)
     }
     function maopao(){
-        alert("maopao:"+event.target);
+        alert("maopao:"+event.target)
     }
-    function a(){
+    function pa(){
         event.preventDefault();//阻止了a标签的默认属性跳转到地址
+    }
+
+    //event capture
+    document.getElementById("did").addEventListener("onmouse",buHuo);
+    function buHuo(){
+        alert("buHuo:"+event.target)
     }
 </script>
 </body>
 </html>
+

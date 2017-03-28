@@ -14,25 +14,33 @@
 <body>
     <div class="div" onmouseover="mr(this)" onmouseout="mt(this)"></div>
     <br/>
-    <input type="text" onchange="alert('内容变化了')" onselect="os(this)" onfocus="of(this)">
-                                                           <!-注意此处参数要指向函数本身-->
+    <input type="text" onchange="oc(this)" onselect="os(this)" onfocus="of(this)">
+    <!-注意:这种用法时,this指触发事件的对象
+    本例指向input的value-->
     <script>
         //onclick
 
-        //mouseover
+        //onmouseover
         function mr(bg){
         bg.style.background="#234";
         }
+
         function mt(bg){
         bg.style.background="#987";
         }
 
-
         //onchange
+        function oc(bg){
+            bg.style.background="#908";
+            alert('内容变化了');
+            console.log(this); //window
+            console.log(bg);  //input element
+            console.log(bg.value); //触发事件里的this
+        }
 
         //onselect
         function os(bg){
-            bg.style.background="#333";
+            bg.style.background="#678"; //此句并未生效,为什么?
             alert("内容被选中了")
         }
 

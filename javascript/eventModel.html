@@ -6,8 +6,8 @@
 </head>
 <body>
     <div>
-        <!--html内的事件处理
-        最大的缺点:修改时需在html和js同事处理-->
+        <!--html内的事件处理,和dom0级本质一样,可认为是一种
+        最大的缺点:修改时需在html和js同时处理-->
         <button id="btn" onclick="ep()">btn</button>
     </div>
     <script>
@@ -28,10 +28,11 @@
         b.onclick=null;    //通过赋值为null清除事件
 
 
-        //dom2级事件处理,即句柄法,addeventlistener("事件",函数名,"布尔值(目前忽略)")
+        //dom2级事件处理,即句柄法,addeventlistener("事件",函数名,bool)
+        // 其中,第三个参数true为捕获事件,false为冒泡事件
         //不会覆盖,依次执行
-        document.getElementById("btn").addEventListener("click",d1);
-        document.getElementById("btn").addEventListener("click",d2);
+        document.getElementById("btn").addEventListener("click",d1,true);
+        document.getElementById("btn").addEventListener("click",d2,false);
 
         function d1(){
             alert("dom2级事件1")
