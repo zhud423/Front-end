@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function f1(i) {
+        var b = i * i;
+        return function f2() {
+            //return函数值,相当于把f2赋值给全局变量,始终存储在内存中,
+            // 而f2的存在依赖f1,所以f1也始终在内存中
+            // 让外部可以调用闭包里的局部变量
+            return b--;  //b值不被返回f1调用不到此b值
+            //console.log(b);   //此句执行不了,因为b被返回了,相当于函数执行中断
+
+            //b--;
+            //console.log(b);   //b--不返回时,此句能执行
+        };
+    }
+    var a = f1(8);
+    alert(a); // 返回值function(){...}
+    alert(a(8)); // 返回值为64， 内部变量b为63
+
+
+    //经典案例
+    const arr = [10, 12, 15, 21];
+    //错误写法  输出是4个index:4 而并非想要的index:0 1 2 3
+    //原因:setTimeout里的匿名函数,实现闭包,for循环对内部无作用,只有循环运行完跳出时,内部才执行
+     for (var i = 0; i < arr.length; i++) {
+     setTimeout(function() {
+     console.log('The index of this number is: ' + i);
+     }, 1000);
+     }
+    //正确1 但延时失效了
+    for (var i = 0; i < arr.length; i++) {
+        setTimeout(oi(i), 5000);      //延时失效为什么?
+    }
+    function oi(index) {
+            console.log('The index of this number is: ' + index);
+    }
+    //正确2
+    for (var i = 0; i < arr.length; i++) {
+        // 通过传递变量 i
+        // 在每个函数中都可以获取到正确的索引
+        setTimeout(function(i_local) {
+            return function() {
+                console.log('The index of this number is: ' + i_local);
+            }
+        }(i), 3000);       //并不是每隔3s输出一个index,而是3s后一次输出4个inxdex
+    }
+    //正确3
+    // for循环中如果使用ES6的let语法，它会创建一个新的绑定,每个方法都是被单独调用的,也能实现需求
+</script>
+</body>
+</html>

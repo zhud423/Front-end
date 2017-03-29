@@ -6,22 +6,24 @@
 </head>
 <body>
 <script>
-    //闭包实现封装,能隐藏信息
+    //闭包作用:维持局部变量,保护变量,避免变量名全局污染
     (function(){
         var n ="b";
-       // window.n=n;
+        window.on=n;          //公布外界使用的接口,可以定义新的变量on
         function person(name){
             this._name=name;//指定参数,注意此this前没_
-            alert("hello"+this._name);
+            alert("hello:"+this._name);
         }
-        var m=new person("zhu");
-        window.person = person;//公布外界使用的接口
+        var m1=new person("zhu");
+        window.operson = person; //也可以公布函数,但函数名后面不能加(),
+                                // 此处把它当做一个变量赋值给新变量
     })();
     (function(){
         function c(){
-            alert("hi"+n);//上面闭包中的n被隐藏,此处不能被调用,用window公布后可以调用
+            alert("hi:"+on);//上面闭包中的n被隐藏,此处不能被调用,用window公布后可以调用
         }
         c();
+        var m2=new operson("zhud");
     })();
 </script>
 </body>

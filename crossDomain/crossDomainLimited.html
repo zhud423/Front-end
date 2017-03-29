@@ -9,15 +9,16 @@
     <iframe src="http://baidu.com" frameborder="0" style="display: none;" ></iframe>
     <script src="jquery.min.js"></script>
 <script>
+    //限制的目的:安全
     function crossDomainLimited(){
-        var url="http://a.test.com";
+        var url="http://www.baidu.com";
         var url1="http://www.a.com";
         //ajax跨域限制,
         //向某个url发起ajax请求,然后绑定成功和失败事件
         $.ajax(url).done(function (data) {
             alert(data);
         }).fail(function(){
-            alert("请求失败")
+            alert("跨域操作被限制了!")
         })
     }
 </script>

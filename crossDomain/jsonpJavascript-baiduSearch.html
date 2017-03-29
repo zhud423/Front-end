@@ -63,8 +63,8 @@
         var data = document.getElementById('inputSearch');
         var gUl = document.getElementById('ulList');
 
-        //键盘按下后抬起触发事件(onkeyup)
-        Data.onkeyup = function(){
+        //键盘按下再抬起触发事件(onkeyup)
+        data.onkeyup = function(){
             if(data.value != ''){
                 //创建script标签(createElement)
                 var script = document.createElement("script");
