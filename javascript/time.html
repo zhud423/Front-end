@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body onload="startTime()">
+<body onload="time()">
 <script>
     function startTime(){
         var time=new Date();
@@ -15,7 +15,7 @@
         var sc=checkTime(s);
         document.getElementById("t").innerHTML=h+":"+mc+":"+sc;
         t=setTimeout(function(){  //setTimeout在指定的毫秒数后调用函数或计算表达式
-            startTime(); //递归调用,函数自己调用自己
+            time(); //递归调用,函数自己调用自己
         },500);          //实现让时间一直刷新
     }
     function checkTime(i){
