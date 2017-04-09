@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //w:1<=w=<x
+    // 1<=x=<100
+    // 1<=y=<z
+    // 1<=z=<100
+    for (var x=1 ;x<=100;x++){
+        for (var w=1;w<=x;w++){
+            var pl=x-w+1;
+        }
+    }
+    for (var z=1 ;z<=100;z++){
+        for (var y=1;y<=x;y++){
+            var ql=z-y+1;
+        }
+    }
+    var Sn=pl*ql;
+    console.log(Sn);
+</script>
+</body>
+</html>

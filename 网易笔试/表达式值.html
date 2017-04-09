@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var sequence=new Array();
+    for (var n=1;n<=5;n++){
+        for(var i=0;i<n;i++){
+            sequence[i]=Math.floor(Math.random()*1000);
+            chang();
+        }
+
+    }
+    var t=[];
+    function chang(){
+        for(var i in sequence){
+            if(t.indexOf(sequence[i])==-1){
+                t.push(sequence[i]);
+            }
+        }
+        return t;
+    }
+    var sequence=t;
+</script>
+</body>
+</html>
