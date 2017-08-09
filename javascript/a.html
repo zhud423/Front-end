@@ -29,11 +29,23 @@
 //    for (var i=0;i<100;i++){
 //        a();
 //    }
-    obj={a:"aa" , b:"bb", c:"cc" ,d:"dd"};
-    for (var key in obj){
-        console.log(key);
-        console.log(o);
+//    obj={a:"aa" , b:"bb", c:"cc" ,d:"dd"};
+//    for (var key in obj){
+//        console.log(key);
+//        console.log(o);
+//    }
+
+var a=[]; a[0]=1; a[1]=2; a[2]=3; a[5]=4;
+console.log(a[3]);
+
+var msg='hello';
+for (var i=0; i<10; i++) {
+        var msg='hello'+i*2+i;
     }
+console.log(msg+"\n"+i);
+alert(msg+"\n"+i);
+document.write(msg+"<br>"+i);
+document.getElementById("did").innerHTML=a[4]+"<br>"+a[5];
 </script>
 </body>
 </html>

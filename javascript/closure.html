@@ -16,11 +16,11 @@
         }
         var m1=new person("zhu");
         window.operson = person; //也可以公布函数,但函数名后面不能加(),
-                                // 此处把它当做一个变量赋值给新变量
+                                // 此处把person当做一个变量赋值给新变量operson
     })();
     (function(){
         function c(){
-            alert("hi:"+on);//上面闭包中的n被隐藏,此处不能被调用,用window公布后可以调用
+            alert("hi:"+on);//上一个闭包中的变量n被隐藏,此处不能被调用,用window公布后可以调用
         }
         c();
         var m2=new operson("zhud");

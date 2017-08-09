@@ -8,11 +8,11 @@
 <script>
     //工厂法
     function cx(name){
-        var o =new Object();       //工厂法关键
+        var o =new Object();       //关键步骤
         o.name=name;
         return o;                  //另一关键
     }
-    var x1=cx("zhud");             //缺点:不能识别对象类型
+    var x1=cx("zhud");             //缺点:不能识别对象类型,
 
     //构造函数法
     function Xx(name){          //函数首字母惯例大写

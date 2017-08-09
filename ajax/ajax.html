@@ -12,13 +12,12 @@
 
     //2.初始化请求信息 ,设置各类属性(发到哪里,发什么数据,用什么方法发)
     xhr.open("GET","http://?keywords=c",true,"","");
+    xhr.open("POST","http://",true,"","");
     //5个参数(提交方法,url,异步是true,用户名,密码)  注意:get方法的查询数据在url里,用?连接,后2个参数一般不用
     //异步请求的缺点:编码复杂度提升,在不影响用户体验的前提下,可用同步
 
     //3.发送请求
     xhr.send();
-
-    xhr.open("POST","http://",true,"","");//5个参数
     xhr.send("keywords=c&other=d");//多个数据在request的body里 数据格式:urlencoded
 
     xhr.setRequestHeader("Content-Type","application/json");//给请求加头部信息,指定Content-Type
@@ -36,6 +35,9 @@
         //readystate5种状态
         //0.
         //1.
+        //2.
+        //3.
+        //4.
         if(xhr.readyState==4&&xhr.status==200){//http status (状态码)500 404 403,虽然数据发送完成,但结果不正确,200结果才正确
             JSON.parse(xhr.responseText);         //浏览器支持json对象,如果需要对响应结果进一步操作,则把json字符串转换成dom对象,不需要直接用text就行
             eval(xhr.responseText);               //不支持
@@ -74,9 +76,11 @@
     }
 
 
-    //浏览器兼容性和版本说明
+    //二、//0.
+    //1.浏览器兼容性和版本说明
     //ie6以下ie用ActiveXObject,ie6用Msxm12.XMLHTTP;ie5及更老的用Microsoft.XMLHTTP
     //浏览器兼容性,ie7及其他现代浏览器均支持XMLHttpRequest()
+
     //其中,XMLHttpRequest()分为两个版本,version2兼容version1所有,并且有新特性:
     // 1.timeout超时,请求在规定时间被未完成,到时自动终止
     // 2.cors跨域,version1不支持跨域

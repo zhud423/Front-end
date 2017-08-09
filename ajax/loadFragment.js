@@ -4,7 +4,7 @@
 $("body").ready(function () {
     var t=setTimeout(loadFragment,2000);
     function loadFragment() {
-        //加载htm文档,htm文档可以存非正规的html内容
+        //1、加载htm文档,htm文档可以存非正规的html内容
         $("body").load("box.htm",function (r,status,xhr) {
             //.load(url,data,function(response,status,xhr))
             //其中data和function可选,
@@ -14,7 +14,7 @@ $("body").ready(function () {
                 $("body").text("碎片加载失败")
             }
         });
-        //加载script,并执行script中的函数
+        //2、加载script,并执行script中的函数
         $.getScript("hello.js").complete(function () {
             hello();
         })
